@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import BootstrapVue from 'bootstrap-vue'
 import VueRouter from 'vue-router'
-
+import { store } from './store/store'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -11,7 +11,7 @@ import Profile from './components/Profile'
 import Settings from './components/Settings'
 import Logout from './components/Logout'
 import CardGrouper from './components/CardGrouper'
-
+import SubAppsRenderer from './components/SubAppsRenderer'
 
 Vue.use(VueRouter)
 Vue.use(BootstrapVue)
@@ -24,6 +24,7 @@ const router = new VueRouter({
     { path: '/profile', component: Profile },
     { path: '/settings', component: Settings },
     { path: '/logout', component: Logout },    
+    { path: '/dashboard/:key', component: SubAppsRenderer},
     { path: '/dashboard', component: CardGrouper },    
     { path: '/', component: App }
   ]
@@ -31,5 +32,6 @@ const router = new VueRouter({
 
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')

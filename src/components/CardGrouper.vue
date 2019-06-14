@@ -3,9 +3,9 @@
   <div  class = "full" >
     
     <div class="h-50" style=" background-color: #C8544F">
-      <h1 align="center">{{this.passingObject.title}} </h1>
+      <h1 align="center">{{$store.getters.responseAPI.title}} </h1>
      
-      <CardRenderer v-bind:passer="passingObject"/>
+      <CardRenderer :renderData=this.$store.getters.responseAPI.apps />
     </div>
     
   </div>
@@ -26,56 +26,7 @@ import CardRenderer from "./CardRenderer.vue"
     },
     data() {
       return {
-        passingObject: {
-          "name": "Abhigyan Nayak",
-          "email": "abhigyan.nayak@gmail.com",
-          "city_id": 21,
-          "user_type": ["ASV"],
-          "group_id": 10,
-          "user_id": 1,
-          "title": "MeshApp",
-          "apps": [
-            {
-              "name": "Donut",
-              "link": "http://www.makeadiff.in/apps/donut",
-              "icon": "http://www.makeadiff.in/icon1",
-              "description": "some lorum epsum text",
-              "apps": []
-            },
-            {
-              "name": "tunod",
-              "link": "http://www.makeadiff.in/apps/tunod",
-              "icon": "http://www.makeadiff.in/icon2",
-              "description": "some lorum epsum text",
-              "apps": []     
-            },
-            {
-              "name": "finance",
-              "link": "http://www.makeadiff.in/apps/finance",
-              "icon": "http://www.makeadiff.in/icon3",
-              "description": "some lorum epsum text",
-              "apps": [
-                {
-                  "name": "reimbursement",
-                  "link": "http://www.makeadiff.in/apps/tunod",
-                  "icon": "http://www.makeadiff.in/icon2",
-                  "description": "some lorum epsum text",
-	                "title": "finance",
-                  "apps": []
-                      
-                },
-                {
-                  "name": "Salesforce",
-                  "link": "http://www.makeadiff.in/apps/tunod",
-                  "icon": "http://www.makeadiff.in/icon2",
-                  "description": "some lorum epsum text",
-		              "title": "finance",
-                  "apps": []
-                }
-              ]
-            }
-          ]    
-        }
+        
       }
     },
     methods: {
