@@ -35,12 +35,7 @@
       >
     </v-avatar>   
   </v-toolbar>
-  <v-content>
-      <v-fade-transition mode="out-in">
-        <router-view></router-view>
-      </v-fade-transition>
-  </v-content>
-</v-app>
+  </v-app>
 </template>
 
 <script lang="js">
@@ -53,31 +48,22 @@
     data() {
       return {
         drawer: false,
-        items: [{
-          href: 'dashboard',
-          router: true,
-          title: 'dashboard',
-          icon: 'home',
-        }, {
-          href: 'profile',
-          router: true,
-          title: 'profile',
-          icon: 'extension',
-        }, 
-        {
-          href: 'settings',
-          router: true,
-          title: 'settings',
-          icon: 'domain',
-        },{
-          href: 'logout',
-          router: true,
-          title: 'Logout',
-          icon: 'domain',
-        },
-        {
-
-        }],
+      items: [{
+        href: 'dashboard',
+        router: true,
+        title: 'dashboard',
+        icon: 'home',
+      }, {
+        href: 'examples',
+        router: true,
+        title: 'Example',
+        icon: 'extension',
+      }, {
+        href: 'about',
+        router: true,
+        title: 'About',
+        icon: 'domain',
+      }],
       }
     },
     methods: {

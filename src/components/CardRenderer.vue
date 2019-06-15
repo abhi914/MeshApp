@@ -1,5 +1,4 @@
 <template lang="html">
-
   <div>       
     <b-container class="bv-example-row">      
        <b-row v-for="(row, i) of rows" v-bind:key="i">       
