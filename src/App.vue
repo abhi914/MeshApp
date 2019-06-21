@@ -2,7 +2,7 @@
   
     <!-- <NavigationBar />     -->
     <v-app>
-      <v-navigation-drawer v-model="drawer" app temporary>
+      <v-navigation-drawer  v-model="drawer" app temporary >
         <v-list>
           <v-list-tile>
             <v-list-tile-content>
@@ -25,9 +25,13 @@
         </v-list>
       </v-navigation-drawer>
       <v-toolbar
-        color="light"
+        color="pink"
+        light
       >
+    
+
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+        <v-img :src="require('@/assets/mad_logo.png')" max-width="80px" height="41px"  />     
         <v-toolbar-title class="black--text">Make A Difference</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-avatar>
@@ -69,11 +73,6 @@ export default {
           icon: 'extension',
         }, 
         {
-          href: 'settings',
-          router: true,
-          title: 'settings',
-          icon: 'domain',
-        },{
           href: 'logout',
           router: true,
           title: 'Logout',

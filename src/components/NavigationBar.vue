@@ -25,8 +25,9 @@
   <v-toolbar
     color="light"
   >
+
     <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-    <v-toolbar-title class="black--text">Make A Difference</v-toolbar-title>
+    <!-- <v-toolbar-title class="black--text">Make A Difference</v-toolbar-title> -->
     <v-spacer></v-spacer>
     <v-avatar>
       <img

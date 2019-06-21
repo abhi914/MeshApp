@@ -6,7 +6,7 @@
                     <!-- you card -->
               <b-card 
                 :title="item.title" 
-                :img-src="item.icon" 
+                img-src="item.icon" 
                 img-alt="Image" 
                 img-top 
                 tag="article" 

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios';
 
 Vue.use(Vuex)
 
@@ -17,7 +18,7 @@ export const store = new Vuex.Store({
                 {
                     "name": "Donut",                    
                     "link": "http://www.makeadiff.in/apps/donut",
-                    "icon": "http://www.makeadiff.in/icon1",
+                    "icon": "https://makeadiff.in/madapp/images/flat_ui/donut.png",
                     "description": "some lorum epsum text",
                     "apps": []
                 },
@@ -54,15 +55,44 @@ export const store = new Vuex.Store({
                     ]
                 }        
             ]    
+        },
+        userData: {
+
         }        
     },
     mutations: {
-        
+        storeUserData(state, data) {
+            state.userData = data
+        }
     },
     getters: {
         responseAPI: state => {
-            return state.responseAPI
-    
+            return state.responseAPI    
+        },
+        userData: state => {
+            return state.userData
         }    
-    }
+    },
+    actions: {
+        getUserData(context)  {
+            return new Promise((resolve, reject) => {
+                axios.get('http://makeadiff.in/api/v1/users/1', {
+                    headers: {
+                        'Content-Type': 'application/json'               
+                    },
+                    auth: {
+                        username: 'data.simulation@makeadiff.in',
+                        password: 'pass'
+                    }    
+                }).
+                then(response => {
+                    context.commit('storeUserData', response.data.data.users)
+                    // console.log(response.data.data.users)
+                    resolve(response);  // Let the calling function know that http is done. You may send some data back
+                }).catch(error => {
+                    reject(error);
+                })        
+            })
+        }            
+    }    
 })

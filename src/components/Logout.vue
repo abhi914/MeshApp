@@ -1,13 +1,25 @@
 <template lang="html">
 
-  <div class="logout">
-    <b-modal id="modal-1" title="BootstrapVue">
-      <b-alert v-model="showDismissibleAlert" variant="success" dismissible>
-        Successfuly Logged Out :) 
-      </b-alert>
-    </b-modal>
-    
-  </div>
+ <v-layout justify-center>   
+    <v-dialog
+      v-model="dialog"
+      max-width="290"
+    >
+      <v-card>
+        <v-card-title class="headline">Successfully Logged Out!</v-card-title>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="pink"
+            flat="flat"
+            @click="dialog = false"
+          >
+            Okay!
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </v-layout>
 
 </template>
 
@@ -20,7 +32,7 @@
     },
     data() {
       return {
-         showDismissibleAlert: true
+        dialog: true
       }
     },
     methods: {

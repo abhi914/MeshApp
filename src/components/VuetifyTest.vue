@@ -1,41 +1,154 @@
 <template lang="html">
-<v-app>
-  <v-navigation-drawer v-model="drawer" app temporary>
-    <v-list>
-      <v-list-tile>
-        <v-list-tile-content>
-          <v-list-tile-title>
-            <span>Menu</span>
-          </v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
-      <v-divider></v-divider>
-      <template v-for="(item, index) in items">
-        <v-list-tile :href="item.href" :to="{name: item.href}" :key="index">
-          <v-list-tile-action>
-            <v-icon light v-html="item.icon"></v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title v-html="item.title"></v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </template>
-    </v-list>
-  </v-navigation-drawer>
-  <v-toolbar
-    color="light"
-  >
-    <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-    <v-toolbar-title class="black--text">Make A Difference</v-toolbar-title>
-    <v-spacer></v-spacer>
-    <v-avatar>
-      <img
-        src="../assets/static.jpeg"
-        alt="John"
-      >
-    </v-avatar>   
-  </v-toolbar>
-  </v-app>
+<v-container grid-list-md >
+<v-layout>
+    <v-flex xs12 md4>
+      <v-card>
+        <v-img
+          class="white--text"
+          height="200px"
+          src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+        >
+          <!-- <v-container> -->
+            <v-layout>
+              <v-flex xs12 align-end flexbox>
+                <span class="headline">Top 10 Australian beaches</span>
+              </v-flex>
+            </v-layout>
+          <!-- </v-container> -->
+        </v-img>
+        <v-card-title>
+          <div>
+            <span class="grey--text">Number 10</span><br>
+            <span>Whitehaven Beach</span><br>
+            <span>Whitsunday Island, Whitsunday Islands</span>
+          </div>
+        </v-card-title>
+        <v-card-actions>
+          <v-btn flat color="orange">Share</v-btn>
+          <v-btn flat color="orange">Explore</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-flex>   
+
+    <v-flex xs12 md4>
+      <v-card>
+        <v-img
+          class="white--text"
+          height="200px"
+          src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+        >
+          <!-- <v-container> -->
+            <v-layout>
+              <v-flex xs12 align-end flexbox>
+                <span class="headline">Top 10 Australian beaches</span>
+              </v-flex>
+            </v-layout>
+          <!-- </v-container> -->
+        </v-img>
+        <v-card-title>
+          <div>
+            <span class="grey--text">Number 10</span><br>
+            <span>Whitehaven Beach</span><br>
+            <span>Whitsunday Island, Whitsunday Islands</span>
+          </div>
+        </v-card-title>
+        <v-card-actions>
+          <v-btn flat color="orange">Share</v-btn>
+          <v-btn flat color="orange">Explore</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-flex>   
+
+    <v-flex xs12 md4>
+      <v-card>
+        <v-img
+          class="white--text"
+          height="200px"
+          src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+        >
+          <!-- <v-container> -->
+            <v-layout>
+              <v-flex xs12 align-end flexbox>
+                <span class="headline">Top 10 Australian beaches</span>
+              </v-flex>
+            </v-layout>
+          <!-- </v-container> -->
+        </v-img>
+        <v-card-title>
+          <div>
+            <span class="grey--text">Number 10</span><br>
+            <span>Whitehaven Beach</span><br>
+            <span>Whitsunday Island, Whitsunday Islands</span>
+          </div>
+        </v-card-title>
+        <v-card-actions>
+          <v-btn flat color="orange">Share</v-btn>
+          <v-btn flat color="orange">Explore</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-flex>   
+
+
+    <v-flex xs12 md4>
+      <v-card>
+        <v-img
+          class="white--text"
+          height="200px"
+          src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+        >
+          <!-- <v-container> -->
+            <v-layout>
+              <v-flex xs12 align-end flexbox>
+                <span class="headline">Top 10 Australian beaches</span>
+              </v-flex>
+            </v-layout>
+          <!-- </v-container> -->
+        </v-img>
+        <v-card-title>
+          <div>
+            <span class="grey--text">Number 10</span><br>
+            <span>Whitehaven Beach</span><br>
+            <span>Whitsunday Island, Whitsunday Islands</span>
+          </div>
+        </v-card-title>
+        <v-card-actions>
+          <v-btn flat color="orange">Share</v-btn>
+          <v-btn flat color="orange">Explore</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-flex>   
+
+
+    <v-flex xs12 md4>
+      <v-card>
+        <v-img
+          class="white--text"
+          height="200px"
+          src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+        >
+          <!-- <v-container> -->
+            <v-layout>
+              <v-flex xs12 align-end flexbox>
+                <span class="headline">Top 10 Australian beaches</span>
+              </v-flex>
+            </v-layout>
+          <!-- </v-container> -->
+        </v-img>
+        <v-card-title>
+          <div>
+            <span class="grey--text">Number 10</span><br>
+            <span>Whitehaven Beach</span><br>
+            <span>Whitsunday Island, Whitsunday Islands</span>
+          </div>
+        </v-card-title>
+        <v-card-actions>
+          <v-btn flat color="orange">Share</v-btn>
+          <v-btn flat color="orange">Explore</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-flex>   
+  </v-layout>
+  </v-container>
 </template>
 
 <script lang="js">
