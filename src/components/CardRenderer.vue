@@ -1,27 +1,34 @@
 <template lang="html">
-  <div>       
-    <b-container class="bv-example-row">      
-       <b-row v-for="(row, i) of rows" v-bind:key="i">       
-          <b-col v-for="(item, j) of row" v-bind:key="j" >
-                    <!-- you card -->
-              <b-card 
-                :title="item.title" 
-                :img-src="item.icon" 
-                img-alt="Image" 
-                img-top 
-                tag="article" 
-                style="max-width: 20rem;" 
-                class="mb-2"
-              >
-                <b-card-text>
-                  <h1>{{item.name}}</h1>
-                  <pre>{{item.description}}</pre>
-                </b-card-text>
-                  <b-button :href="'/dashboard/'+item.name" variant="primary">More</b-button>
-              </b-card>                
-          </b-col>
-        </b-row>
-    </b-container>    
+  <div>        
+    <v-container grid-list-sm>
+      <v-layout wrap>
+
+        <!-- Render Cards in column of 3 in a row -->
+      
+        <v-flex xs12 sm4 v-for="(item, index) in renderData" v-bind:key="index">          
+          <v-card hover height="100%" class="card-outter" >
+            <v-img class="white" height="200px" :src="item.icon_url">
+              <v-container >
+                <v-layout fill-height>
+                  <v-flex xs12 align-end flexbox >                
+                  </v-flex>
+                </v-layout>
+              </v-container>
+            </v-img>
+            <v-card-title>
+              <div>
+                <p class="headline black--text">{{ item.name }}</p>            
+                <span>{{ item.description }}</span>
+              </div>
+            </v-card-title>
+            <v-card-actions class="card-actions">
+              <v-btn  :href="'/home/'+item.name" color="primary" v-if="!!item.apps" > Know More</v-btn>
+              <v-btn  :href="item.link" color="primary" v-else>Open!</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-flex>     
+      </v-layout>
+    </v-container>  
   </div>
 
 </template>
@@ -38,36 +45,35 @@
     },
      data() {
       return {
-        // rows: null
+        
       }
     },
     mounted() {
-
+      
       
     },
    
     methods: {
-
-    },
-    computed: {
-      rows() {
-        const itemsPerRow = 3
-        let rows = []
-        // eslint-disable-next-line
-        // console.log(this.renderData)
-        let arr = this.renderData
       
-        for (let i = 0; i < arr.length; i += itemsPerRow) {          
-          rows.push(this.renderData.slice(i, i + itemsPerRow))
-        }
-        // this.rows = rows    
-        return rows
-      }
-
+    },
+    computed: {     
+      
     }
   }
 </script>
 
 <style scoped>
+.card-outter {
+  position: relative;
+  padding-bottom: 50px;
+}
+.card-actions {
+  position: absolute;
+  bottom: 0;
+}
+
+.v-card--hover {
+  cursor: default;
+}
  
 </style>

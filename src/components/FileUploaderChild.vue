@@ -6,12 +6,7 @@
       <slot name="activator"></slot>
     </div>
     <!-- image input: style is set to hidden and assigned a ref so that it can be triggered -->
-    <input type="file"
-       ref="file"
-       :name="uploadFieldName"
-       @change="onFileChange(
-          $event.target.name, $event.target.files)"
-       style="display:none">
+    <input type="file" ref="file" :name="uploadFieldName" @change="onFileChange($event.target.name, $event.target.files)" style="display:none">
     <!-- error dialog displays any potential error messages -->
     <v-dialog v-model="errorDialog" max-width="300">
       <v-card>

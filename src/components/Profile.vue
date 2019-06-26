@@ -1,13 +1,20 @@
 <template lang="html">
 
 <v-container>
+  
   <v-layout>
     <v-flex xs12 md8 offset-sm2>
       <v-card>
         <v-form ref="form" v-model="valid" lazy-validation>    
           <v-container>     
+
+          
+            <!-- Image Uploader --> 
             <FileUploaderParent />          
+
+            <!-- Each <v-layout> is a row in the form -->
             <v-layout >
+              <!-- Each <v-flex> is a field -->
               <v-flex xs12 sm6>
                 <v-text-field v-model="name" :counter="30" label="Name" required></v-text-field>
               </v-flex>
@@ -58,6 +65,8 @@
               </v-flex>
             </v-layout>
 
+            
+            <!-- Material UI Date Picker -->
             <v-layout>
               <v-flex text-xs-center  sm6 >
                 <v-menu v-model="menu" :close-on-content-click="false" :nudge-right="40" lazy transition="scale-transition" offset-y 
@@ -67,18 +76,21 @@
                   </template>
                   <v-date-picker v-model="date" @input="menu = false"></v-date-picker>
                 </v-menu>
-              </v-flex>         
+              </v-flex>                      
             </v-layout>
-
             <div class="text-xs-right">         
-                <v-btn :disabled="!valid" color="pink white--text" @click="submit">Save </v-btn>
-                <!-- <v-btn color="error" @click="reset">Reset</v-btn> -->
+              <v-btn :disabled="!valid" class=" primary" @click="submit" :loading="saving" >Save </v-btn>                
             </div>
+            <v-snackbar v-model="snackbar" :bottom="y === 'bottom'" color="success">
+              Information Successfully Saved  
+              <v-btn color="white" @click="snackbar = false, redirect = true" flat>Close </v-btn>
+            </v-snackbar>
             </v-container>
           </v-form> 
         </v-card>
       </v-flex>
     </v-layout>
+    
   </v-container>
 </template>
 
@@ -94,6 +106,11 @@ import axios from 'axios'
     },    
     data() {
       return {
+    
+        redirect: false,
+        snackbar: false,
+        isDone: false,
+        saving: false,
         valid: true,
         name: '',
         address: '',
@@ -149,13 +166,14 @@ import axios from 'axios'
         }
       },
       submit() {
+        this.saving = true
         if (this.$refs.form.validate()) {
           this.snackbar = true
         }
 
         axios({          
           method: 'POST',
-          url: "http://makeadiff.in/api/v1/users/142766",
+          url: "http://makeadiff.in/api/v1/users/"+this.$store.getters.userId,
           headers: {
             'Content-Type': 'application/json'               
           },
@@ -163,29 +181,39 @@ import axios from 'axios'
             name: this.name,
             email: this.email,
             address: this.address,
-            sex: this.gender,
+            sex: this.gender == 'male' ? 'm' : 'f',
             phone: this.phone,
             password: this.password
           },
           auth: {
-             username: 'data.simulation@makeadiff.in',
-              password: 'pass'
+            username: 'data.simulation@makeadiff.in',
+            password: 'pass'
           }            
         })      
         .
-        then(response => {
-          // eslint-disable-next-line
-          console.log(response)
+        then((response) => {
+          this.saving = false
+        //  console.log(response)
+          // this.snackbar = true
+          // setInterval(() => {          
+          //     this.$router.push("home")  
+          // }, 2000);
+          
+        }).
+        catch(() => {        
+          alert("Information not saved. Check Your Connection")  
+          this.saving = false
         })
       },
 
       reset() {
         this.$refs.form.reset()
       },
+      
     },
     mounted() {
-      // console.log(axios)
-      axios.get('http://makeadiff.in/api/v1/users/142766', {
+      
+      axios.get('http://makeadiff.in/api/v1/users/'+this.$store.getters.userId, {
         headers: {
           'Content-Type': 'application/json'               
         },
@@ -195,24 +223,23 @@ import axios from 'axios'
         }    
       })
         .then(response => {
-          // console.log(response.data.data.users)
+          
           this.name = response.data.data.users.name
           this.address = response.data.data.users.address
           this.personalEmail = response.data.data.users.email
           this.date = response.data.data.users.birthday
           this.phone = response.data.data.users.phone  
           this.gender = response.data.data.users.sex == 'm'? 'male': 'female'
-
-          
-          
-          
+          // this.password = response.data.data.users.password
+          this.madEmail = response.data.data.users.mad_email
+          // console.log(response)
           
       });    
     },    
     computed: {
 
-    }
-}
+    } 
+  }
 </script>
 
 <style scoped >

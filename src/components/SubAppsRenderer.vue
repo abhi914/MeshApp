@@ -1,5 +1,4 @@
-<template lang="html">
-    <!-- <h1>Something</h1> -->
+<template lang="html">  
     <CardRenderer :render-data="valArr" />
 </template>
 
@@ -18,20 +17,24 @@ import CardRenderer from './CardRenderer'
                 valArr: []
             }
         },
+            
         mounted() {
-            let key = this.findUrl()
-            let value = this.$store.getters.responseAPI.apps.filter((elem) => {
-                if(elem.name == key) return elem  
-            })
+            let key = this.findLastPath()
+            this.$store.dispatch('getAppsData').
+                then((response)=> {                                 
+                let value = response.data.data.menu.filter((elem) => {
+                    if(elem.name == key) return elem  
+                })
 
-            if (value && value.length > 0)
-                this.valArr = value[0].apps
-            //eslint-disable-next-line
-            console.log(this.valArr)
+                if (value && value.length > 0)
+                    this.valArr = value[0].apps                
+                    
+            })     
         },
         methods: {
-            findUrl() {
+            findLastPath() {
                 let url  = window.location.pathname.split("/").slice(-1)[0];
+                url = url.replace('%20', " ")
                 return url
             }       
         },

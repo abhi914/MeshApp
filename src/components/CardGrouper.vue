@@ -1,25 +1,14 @@
 <template lang="html">
-
-  <div  class = "full" >
-    
-    
-    <div>
-      <v-layout align-center>
-        <v-flex text-xs-center class="pink" outline>
-          <h3 class="display-3">{{$store.getters.responseAPI.title}}</h3>
-        </v-flex>
-      </v-layout>
-     
-      <CardRenderer :renderData=this.$store.getters.responseAPI.apps />
-    </div>
-    
+  <div class="full" >
+    <div>   
+      <CardRenderer :renderData=this.apps />
+    </div>    
   </div>
-
 </template>
 
 <script>
 import CardRenderer from "./CardRenderer.vue"
-/* eslint-disable */
+
   export default  {
     name: 'CardGrouper',
     components: {
@@ -27,11 +16,18 @@ import CardRenderer from "./CardRenderer.vue"
     },
     props: [],
     mounted() {
+      this.$store.dispatch('getAppsData').
+        then((response ) => {
+          this.apps = response.data.data.menu          
+        }).
+        catch(() => {
+          
+      }) 
 
     },
     data() {
       return {
-        
+        apps: []
       }
     },
     methods: {
@@ -44,9 +40,10 @@ import CardRenderer from "./CardRenderer.vue"
 </script>
 
 <style scoped >
+
   .full{
     width: 100vw;
-    height: 90vh;
-    /* background: linear-gradient(to bottom, #E91E63 30%, white 50%) !important; */
-}
+    height: 90vh;        
+  }
+  
 </style>
